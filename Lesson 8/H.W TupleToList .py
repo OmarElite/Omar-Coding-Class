@@ -5,5 +5,5 @@ MyTuple = ("Omar", "Elite", 15, 1.7, 50, "Maths")
 MyList = list(MyTuple)
 
 # Display
-print(MyTuple)
-print(MyList)
+print(f"Tuple (Befor Convert to List) : {MyTuple}")
+print(f"List (After Convert to List) : {MyList}")
