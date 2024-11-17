@@ -1,0 +1,8 @@
+
+Introduction of Class 8 students:
+
+Number of Students: 25
+Students favorite subject: Mathematiques
+Class Monitor: Roy
+Teacher's Name: Elena
+
