@@ -6,7 +6,9 @@ def is_prime(num):
             return False
     return True
 
-print("Two-digit prime numbers:")
-for number in range(10, 100):
-    if is_prime(number):
-        print(number)
+num = int(input("Enter a number to check if it is prime: "))
+
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number.")
