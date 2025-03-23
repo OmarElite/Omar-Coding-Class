@@ -38,18 +38,21 @@ def AnalyseSentiment(text):
         ConversationHistory.append(text)
         
         # - Update the sentiment counters based on the category
-        if Sentiment > 0.75:
+        if Sentiment > 0.75: # Very Positive
             positive_count = positive_count + 1
-            return f"\n{Fore.GREEN}🌟 very Positive Sentiment detected, agent {username}! (score = {Sentiment:.2f})"
+            return f"\n{Fore.GREEN} 🌟 Very Positive Sentiment detected, agent {username} ! (Score = {Sentiment:.2f})"
+        elif 0.25 < Sentiment <= 0.75: # Positive
+            positive_count = positive_count + 1
+            return f"\n{Fore.GREEN} 🌟 Positive Sentiment detected, agent {username} ! (Score = {Sentiment:.2f})"
         elif -0.25 <= Sentiment <= 0.25:
             neutral_count = neutral_count + 1
-            return f"\n{Fore.YELLOW}😐 Neutral Sentiment detected, agent {username}! (score = {Sentiment:.2f})"
+            return f"\n{Fore.YELLOW} 😐 Neutral Sentiment detected, agent {username} ! (Score = {Sentiment:.2f})"
         elif -0.75 <= Sentiment < -0.25:
             negative_count = negative_count + 1
-            return f"\n{Fore.RED}💔 Negative sentiment detected, agent {username}! (score = {Sentiment:.2f})"
+            return f"\n{Fore.RED} 💔 Negative sentiment detected, agent {username} ! (Score = {Sentiment:.2f})"
         else:
             negative_count = negative_count + 1
-            return f"\n{Fore.RED}💔 Very Negative sentiment detected, agent {username}! (score = {Sentiment:.2f})"
+            return f"\n{Fore.RED} 💔 Very Negative sentiment detected, agent {username} ! (Score = {Sentiment:.2f})"
     except Exception as e:
         # - Handle exceptions to avoid crashes
         return f"\n{Fore.RED} An ERROR occured during Sentiment Analysing = {str(e)}"
