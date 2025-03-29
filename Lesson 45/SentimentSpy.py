@@ -15,7 +15,7 @@ positive_count = negative_count = neutral_count = 0 # - Sentiment counters (`pos
 
 # Define a function to simulate a processing animation
 def ShowProcessingAnimation():
-    print(f"{Fore.CYAN}🕵️ detecting Sentiment clues", end="") 
+    print(f"{Fore.CYAN} 🕵️ detecting Sentiment clues", end="") 
     # - Prints "loading dots" to make the chatbot feel interactive
     # - Use a loop to display three dots with a slight delay
     for _ in range(3):
@@ -116,11 +116,26 @@ def StartSentimentChat():
         user_input = input(f"\n{Fore.MAGENTA}{Style.BRIGHT} Agent {username} : {Style.RESET_ALL}").strip()
         
         #   - Check for empty input and prompt the user to enter a valid sentence
+        if not user_input:
+            print(f"{Fore.RED} Enter a none empty message or type 'help'")
+            continue
+
         #   - If the input matches specific commands (`exit`, `summary`, `reset`, `history`, `help`), execute the corresponding functionality
-        #   - Otherwise, call the `analyze_sentiment` function to analyze the input text
-        #   - Display the sentiment analysis result with color-coded feedback
-        # - Exit the loop and display a final summary when the user types `exit`
+        if user_input.lower() == "exit":
+            print(f"{Fore.BLUE} mission complete exiting sentiment spy")
+            print(ExecutCommand("summary")) # Display the final summary
+            break # - Exit the loop and display a final summary when the user types `exit`
+        elif user_input.lower() in ["summary", "reset", "history", "help"]:
+            #   - Display the sentiment analysis result with color-coded feedback
+            print(ExecutCommand(user_input.lower()))
+        else:
+            #   - Otherwise, call the `analyze_sentiment` function to analyze the input text
+            ShowProcessingAnimation()
+            result = AnalyseSentiment(user_input)
+            print(result)
 
 # Define the entry point for the script
-# - Ensure the chatbot starts only when the script is run directly (not imported)
-# - Call the `start_sentiment_chat` function to begin the activity
+if __name__ == "__main__":
+    # - Ensure the chatbot starts only when the script is run directly (not imported)
+    # - Call the `start_sentiment_chat` function to begin the activity
+    StartSentimentChat()
