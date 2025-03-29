@@ -15,7 +15,7 @@ positive_count = negative_count = neutral_count = 0 # - Sentiment counters (`pos
 
 # Define a function to simulate a processing animation
 def ShowProcessingAnimation():
-    print(f"{Fore.CYAN} 🕵️ detecting Sentiment clues", end="") 
+    print(f"{Fore.CYAN} 🕵️   detecting Sentiment clues", end="") 
     # - Prints "loading dots" to make the chatbot feel interactive
     # - Use a loop to display three dots with a slight delay
     for _ in range(3):
@@ -103,7 +103,7 @@ def GetValidName():
 # Define the main function to start the chatbot
 def StartSentimentChat():
     # - Display a welcome message and introduce the Sentiment Spy activity
-    print(f"{Fore.CYAN}{Style.BRIGHT} 🕵️ Welcome to Sentiment Spy ! Your personal Emotion detective is here 🎉")
+    print(f"{Fore.CYAN}{Style.BRIGHT}  🕵️   Welcome to Sentiment Spy ! Your personal Emotion detective is here 🎉")
 
     # - Ask the user for their name and store it in the `user_name` variable
     global username 
