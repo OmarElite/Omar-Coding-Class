@@ -75,4 +75,4 @@ Students can participate in live, instructor-led classes that provide real-time 
     st.write("---")
     st.write("###")
     st.header("Thank You")
-    st.write("""Here's a closing text tailored for a website about city solutions:Thank you for exploring our site ! We hope you found valuable insights into how we can create smarter, more sustainable urban environments. If you have questions or want to learn more about our initiatives, please don't hesitate to reach out. Together, let's build better cities for a brighter future !""")
+    st.write("""Thank you for exploring our site ! We hope you found valuable insights into how we can create smarter, more sustainable urban environments. If you have questions or want to learn more about our initiatives, please don't hesitate to reach out. Together, let's build better cities for a brighter future !""")
