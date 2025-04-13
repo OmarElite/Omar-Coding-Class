@@ -1,7 +1,7 @@
 import cv2
 
 # Load the image
-image_path = 'your_image.jpg'  # Replace with the path to your image
+image_path = "Lesson 49/Omar Palestine Image.png"  # Replace with the path to your image
 image = cv2.imread(image_path)
 
 # Check if image loaded successfully
