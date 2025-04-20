@@ -3,23 +3,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def display_image(title, image):
-	plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(8, 8))
 
-	if len(image.shape) == 2:  # grayscale image
-		plt.imshow(image, cmap="gray")
-	else:
-		plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    if len(image.shape) == 2:  # grayscale image
+        plt.imshow(image, cmap="gray")
+    else:
+        plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
-	plt.title(title)
-	plt.axis("off")
-	plt.show()
+    plt.title(title)
+    plt.axis("off")
+    plt.show()
 
 def interactive_edge_detection(image_path):
-	image = cv2.imread(image_path)
+    image = cv2.imread(image_path)
 
-	if image is None:
-		print("Error: Image not found")
-		return
+    if image is None:
+        print("Error: Image not found")
+        return
 
     #convert to grayscale
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
