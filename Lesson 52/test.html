@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spider Follow Animation</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+});
+
+class Spider {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.tx = x;
+    this.ty = y;
+    this.trail = [];
+  }
+
+  follow(mouseX, mouseY) {
+    this.tx = mouseX;
+    this.ty = mouseY;
+  }
+
+  tick() {
+    const dx = this.tx - this.x;
+    const dy = this.ty - this.y;
+    this.x += dx * 0.05;
+    this.y += dy * 0.05;
+
+    this.trail.push({ x: this.x, y: this.y });
+    if (this.trail.length > 50) this.trail.shift();
+
+    // Draw trail
+    ctx.beginPath();
+    for (let i = 0; i < this.trail.length - 1; i++) {
+      const p1 = this.trail[i];
+      const p2 = this.trail[i + 1];
+      ctx.strokeStyle = `rgba(255, 255, 255, ${i / this.trail.length})`;
+      ctx.lineWidth = 1;
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+    }
+    ctx.stroke();
+
+    // Draw spider body
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = "#fff";
+    ctx.fill();
+
+    // Draw spider legs
+    for (let i = 0; i < 4; i++) {
+      const angle = (i / 4) * Math.PI * 2;
+      const legX = this.x + Math.cos(angle) * 10;
+      const legY = this.y + Math.sin(angle) * 10;
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(legX, legY);
+      ctx.strokeStyle = "white";
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+  }
+}
+
+const spider = new Spider(width / 2, height / 2);
+
+window.addEventListener("pointermove", e => {
+  spider.follow(e.clientX, e.clientY);
+});
+
+function animate() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+  ctx.fillRect(0, 0, width, height);
+
+  spider.tick();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>
